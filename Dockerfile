@@ -67,6 +67,6 @@ ENV PATH ~/esp-open-sdk/xtensa-lx106-elf/bin:~/esp-open-sdk/esptool/:$PATH
 ENV XTENSA_TOOLS_ROOT ~/esp-open-sdk/xtensa-lx106-elf/bin
 ENV SDK_BASE ~/esp-open-sdk/sdk
 
-RUN cd ~ && wget https://github.com/T-vK/docker-esp-sdk/entrypoint_script.sh
+RUN cd ~ && wget https://raw.githubusercontent.com/T-vK/docker-esp-sdk/master/entrypoint_script.sh
 
 ENTRYPONT ~/entrypoint_script.sh
