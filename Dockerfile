@@ -1,0 +1,68 @@
+FROM ubuntu:16.04
+
+MAINTAINER T-vK
+
+RUN apt-get update && apt-get install -y \
+	autoconf \
+	automake \
+	bash \
+	bison \
+	bzip2 \
+	flex \
+	g++ \
+	gawk \
+	gcc \
+	git \
+	gperf \
+	libexpat-dev \
+	libtool \
+	libtool-bin \
+	make \
+	ncurses-dev \
+	nano \
+	python \
+	python-dev \
+	python-serial \
+	sed \
+	texinfo \
+	unrar \
+	unzip \
+	wget \
+	help2man
+
+RUN adduser esp && usermod -a -G dialout esp
+
+USER esp
+
+RUN cd ~ 
+	&& git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+	&& cd ~/esp-open-sdk \
+	&& make VENDOR_SDK=2.0.0 \
+	&& make VENDOR_SDK=1.5.4 \
+	&& make VENDOR_SDK=1.5.3 \
+	&& make VENDOR_SDK=1.5.2 \
+	&& make VENDOR_SDK=1.5.1 \
+	&& make VENDOR_SDK=1.5.0 \
+	&& make VENDOR_SDK=1.4.0 \
+	&& make VENDOR_SDK=1.3.0 \
+	&& make VENDOR_SDK=1.2.0 \
+	&& make VENDOR_SDK=1.1.2 \
+	&& make VENDOR_SDK=1.1.1 \
+	&& make VENDOR_SDK=1.1.0 \
+	&& make VENDOR_SDK=1.0.1 \
+	&& make VENDOR_SDK=1.0.1b2 \
+	&& make VENDOR_SDK=1.0.1b1 \
+	&& make VENDOR_SDK=1.0.0 \
+	&& make VENDOR_SDK=0.9.6b1 \
+	&& make VENDOR_SDK=0.9.5 \
+	&& make VENDOR_SDK=0.9.4 \
+	&& make VENDOR_SDK=0.9.3 \
+	&& make VENDOR_SDK=0.9.2
+
+ENV PATH ~/esp-open-sdk/xtensa-lx106-elf/bin:~/esp-open-sdk/esptool/:$PATH
+ENV XTENSA_TOOLS_ROOT ~/esp-open-sdk/xtensa-lx106-elf/bin
+ENV SDK_BASE ~/esp-open-sdk/sdk
+
+RUN cd ~ && wget https://github.com/T-vK/docker-esp-sdk/entrypoint_script.sh
+
+ENTRYPONT ~/entrypoint_script.sh
