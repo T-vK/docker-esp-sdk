@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # change and optionally download the specified SDK version. 
 # if none specified use 1.5.3
 cd ~/esp-open-sdk
@@ -13,6 +12,7 @@ fi
 
 # change dir to the directory that is linked with the project that is going to be compiled
 cd ~/shared_project
+touch test.txt
 
 if [ -z "$MAKE_PARAMETERS" ]; then
     make $MAKE_PARAMETERS
