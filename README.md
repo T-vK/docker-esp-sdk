@@ -60,3 +60,20 @@ esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0
  - Replace `/home/ubuntu/projects/esp-bootloader` with the absolute path to the directory that contains the files you want to flash.
  - Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
  -Replace `esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin` with whatever command is necessary to flash your binaries.
+
+### If the make file takes care of compiling AND flashing
+
+``` bash
+sudo docker run -t -i -u esp \
+--device=/dev/ttyUSB0 \
+-v /home/debian/espusb:/home/esp/shared_project \
+-e SDK_VERSION='1.5.3' \
+tavk/esp-sdk:0.1 \
+make ESP_ROOT=/home/esp/esp-open-sdk burn
+```
+
+ - Replace `/dev/ttyUSB0` with the COM port your esp is connected to.
+ - Replace `/home/debian/espusb` with the absolute path to directory of the project you want to compile/flash.
+ - Replace `1.5.3` with whatever version of the ESP SDK you want to use for the compiling process.
+ - Replace `make ESP_ROOT=/home/esp/esp-open-sdk burn` with the command necessary to compile and flash your project.
+
