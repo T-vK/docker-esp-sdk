@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	help2man
 
-RUN useradd -m -s /bin/bash -g dialout esp
+RUN useradd -m -s /bin/bash -g dialout esp && passwd -d esp
 
 USER esp
 
@@ -65,9 +65,9 @@ RUN cd esp-open-sdk \
 	&& make VENDOR_SDK=2.0.0 \
 	&& make VENDOR_SDK=1.5.4
 
-ENV PATH ~/esp-open-sdk/xtensa-lx106-elf/bin:~/esp-open-sdk/esptool/:$PATH
-ENV XTENSA_TOOLS_ROOT ~/esp-open-sdk/xtensa-lx106-elf/bin
-ENV SDK_BASE ~/esp-open-sdk/sdk
+ENV PATH /home/esp/esp-open-sdk/xtensa-lx106-elf/bin:/home/esp/esp-open-sdk/esptool:$PATH
+ENV XTENSA_TOOLS_ROOT /home/esp/esp-open-sdk/xtensa-lx106-elf/bin
+ENV SDK_BASE /home/esp/esp-open-sdk/sdk
 
 COPY ./entrypoint.sh ./entrypoint.sh
 USER root

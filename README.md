@@ -1,39 +1,62 @@
-## Example usage
+## Easily compile and flash binaries for the ESP8266 and ESP32
 
-### simple example
+## How to install
 
 ``` bash
+git clone https://github.com/T-vK/docker-esp-sdk.git
+cd docker-esp-sdk
 sudo docker build -t tavk/esp-sdk:0.1 .
-sudo docker run -t -i --device=/dev/ttyUSB0 \
--v /home/example/blinky:~/shared_project \
--e COM_PORT='/dev/ttyUSB0' \
+```
+
+If you don't understand what that means do this:
+
+ - Download the files of this repository and put them in a folder or use git to clone the repository.
+ - Open a command line / terminal and navigate into the folder.
+ - Paste this `sudo docker build -t tavk/esp-sdk:0.1 .` and press enter. (This takes a long time; around 20 minutes for me.)
+
+
+## How to use
+
+### Compiling binaries
+
+``` bash
+sudo docker run -t -i -u esp \
+-v /home/ubuntu/esp8266/esp-open-sdk/examples/blinky:/home/esp/shared_project \
 -e SDK_VERSION='1.5.3' \
--e BIN_FILE_1='blinky-0x00000.bin' \
--e BIN_FILE_2='blinky-0x40000.bin' \
-tavk/esp-sdk:0.1
+tavk/esp-sdk:0.1 \
+make
 ```
 
-### directly passing arguments to make and esptool
+Replace `/home/ubuntu/esp8266/esp-open-sdk/examples/blinky` with the absolute path to the directory of the project oyu want to compile.
+Replace `1.5.3` with whatever version of the ESP SDK you want to compile. 1.4.0 up to 2.0.0 are supported.
+Replace `make` with whatever command is necessary to compile your binary/binaries.
+
+
+### Flashing binaries
 
 ``` bash
-sudo docker build -t tavk/esp-sdk:0.1 .
-sudo docker run -t -i --device=/dev/ttyUSB0 \
--v /home/example/blinky:~/shared_project \
--e MAKE_PARAMETERS='build' \
--e ESPTOOL_PARAMETERS='' \
--e BIN_FILE_1='blinky-0x00000.bin' \
--e BIN_FILE_2='blinky-0x40000.bin' \
-tavk/esp-sdk:0.1
+sudo docker run -t -i -u esp \
+--device=/dev/ttyUSB0 \
+-v /home/ubuntu/esp8266/esp-open-sdk/examples/blinky:/home/esp/shared_project \
+tavk/esp-sdk:0.1 \
+esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 blinky-0x40000.bin
 ```
 
-## List of available parameters
+Replace `/home/ubuntu/esp8266/esp-open-sdk/examples/blinky` with the absolute path to the directory that contains the files you want to flash.
+Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
+Replace `esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 blinky-0x40000.bin` with whatever command is necessary to flash your binaries.
 
- - `MAKE_PARAMETERS` (content will be appended directly to the make command)
- - `ESPTOOL_PARAMETERS` (content will be appended directly to the esptool command)
- - `COM_PORT` (the port to which you want to flash. Default: `/dev/ttyUSB0`)
- - `BAUD` (the baudrate for the flashing. Default: `115200`)
- - `CHIP` (the chip that your module uses. `ESP32` or `ESP8266`. Default: `ESP8266`)
- - `ADDRESS_1` (the address to which to flash the first bin file. Default: `0x00000`)
- - `BIN_FILE_1` (the name of the first bin file to flash)
- - `ADDRESS_2` (the address to which to flash the first bin file. Default: `0x40000`)
- - `BIN_FILE_2` (the name of the second bin file to flash)
+
+### Flashing bootloaders
+
+``` bash
+sudo docker run -t -i -u esp \
+--device=/dev/ttyUSB0 \
+-v /home/ubuntu/projects/esp-bootloader:/home/esp/shared_project \
+tavk/esp-sdk:0.1 \
+esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin
+```
+
+Replace `/home/ubuntu/projects/esp-bootloader` with the absolute path to the directory that contains the files you want to flash.
+Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
+Replace `esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin` with whatever command is necessary to flash your binaries.
