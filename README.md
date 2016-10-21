@@ -27,9 +27,9 @@ tavk/esp-sdk:0.1 \
 make
 ```
 
-Replace `/home/ubuntu/esp8266/esp-open-sdk/examples/blinky` with the absolute path to the directory of the project oyu want to compile.
-Replace `1.5.3` with whatever version of the ESP SDK you want to compile. 1.4.0 up to 2.0.0 are supported.
-Replace `make` with whatever command is necessary to compile your binary/binaries.
+ - Replace `/home/ubuntu/esp8266/esp-open-sdk/examples/blinky` with the absolute path to the directory of the project oyu want to compile.
+ - Replace `1.5.3` with whatever version of the ESP SDK you want to compile. 1.4.0 up to 2.0.0 are supported.
+ - Replace `make` with whatever command is necessary to compile your binary/binaries.
 
 
 ### Flashing binaries
@@ -42,9 +42,9 @@ tavk/esp-sdk:0.1 \
 esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 blinky-0x40000.bin
 ```
 
-Replace `/home/ubuntu/esp8266/esp-open-sdk/examples/blinky` with the absolute path to the directory that contains the files you want to flash.
-Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
-Replace `esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 blinky-0x40000.bin` with whatever command is necessary to flash your binaries.
+ - Replace `/home/ubuntu/esp8266/esp-open-sdk/examples/blinky` with the absolute path to the directory that contains the files you want to flash.
+ - Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
+ - Replace `esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 blinky-0x40000.bin` with whatever command is necessary to flash your binaries.
 
 
 ### Flashing bootloaders
@@ -57,6 +57,6 @@ tavk/esp-sdk:0.1 \
 esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin
 ```
 
-Replace `/home/ubuntu/projects/esp-bootloader` with the absolute path to the directory that contains the files you want to flash.
-Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
-Replace `esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin` with whatever command is necessary to flash your binaries.
+ - Replace `/home/ubuntu/projects/esp-bootloader` with the absolute path to the directory that contains the files you want to flash.
+ - Replace `/dev/ttyUSB0` with the COM port that your ESP is connected to.
+ -Replace `esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin` with whatever command is necessary to flash your binaries.
