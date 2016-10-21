@@ -2,6 +2,8 @@
 
 ## How to install
 
+If you don't have docker, install docker first: https://docs.docker.com/engine/installation/linux/
+
 ``` bash
 git clone https://github.com/T-vK/docker-esp-sdk.git
 cd docker-esp-sdk
@@ -77,3 +79,5 @@ make ESP_ROOT=/home/esp/esp-open-sdk burn
  - Replace `1.5.3` with whatever version of the ESP SDK you want to use for the compiling process.
  - Replace `make ESP_ROOT=/home/esp/esp-open-sdk burn` with the command necessary to compile and flash your project.
 
+### Tested
+I personally tested the docker image under Ubuntu 16.04 x64 and Debian 8 Jessie x64.
