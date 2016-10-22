@@ -1,4 +1,6 @@
 ## Easily compile and flash binaries for the ESP8266 and ESP8266EX
+You might also be interested in the branch for the ESP32: https://github.com/T-vK/docker-esp-sdk/tree/esp32
+
 
 ## How to install
 
