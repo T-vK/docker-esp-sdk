@@ -2,12 +2,11 @@ FROM ubuntu:16.04
 
 MAINTAINER T-vK
 
-RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository multiverse
+#RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository multiverse
 
 RUN apt-get update && apt-get install -y \
 	autoconf \
 	automake \
-	bash \
 	bison \
 	bzip2 \
 	flex \
@@ -16,37 +15,43 @@ RUN apt-get update && apt-get install -y \
 	gcc \
 	git \
 	gperf \
-	libexpat-dev \
+	grep \
+	gettext \
 	libtool \
 	libtool-bin \
+	libexpat-dev \
 	make \
 	ncurses-dev \
-	nano \
+	libncurses-dev \
+	flex \
+	bison \
+	gperf \
+	help2man \
 	python \
 	python-dev \
 	python-serial \
-	sed \
 	texinfo \
-	unrar \
-	unzip \
-	wget \
-	help2man
+	wget
 
 RUN useradd -m -s /bin/bash -g dialout esp && passwd -d esp
-
 USER esp
-
 WORKDIR /home/esp
 
-RUN git clone -b esp32 --recursive https://github.com/T-vK/esp-open-sdk.git
+RUN git clone -b xtensa-1.22.x https://github.com/espressif/crosstool-NG.git
 
-RUN cd esp-open-sdk && make STANDALONE=n
+RUN cd crosstool-NG \
+	&& ./bootstrap \
+	&& ./configure --prefix=$PWD \
+	&& make install
+RUN cd crosstool-NG \
+	&& ./ct-ng xtensa-esp32-elf \
+	&& ./ct-ng build \
+	&& chmod -R u+w builds/xtensa-esp32-elf
 
-RUN cd esp-open-sdk && make STANDALONE=y
+RUN git clone --recursive https://github.com/espressif/esp-idf.git
 
-ENV PATH /home/esp/esp-open-sdk/xtensa-lx106-elf/bin:/home/esp/esp-open-sdk/esptool:$PATH
-ENV XTENSA_TOOLS_ROOT /home/esp/esp-open-sdk/xtensa-lx106-elf/bin
-ENV SDK_BASE /home/esp/esp-open-sdk/sdk
+ENV PATH /home/esp/crosstool-NG/builds/xtensa-esp32-elf/bin:$PATH
+ENV IDF_PATH=/home/esp/esp-idf
 
 COPY ./entrypoint.sh ./entrypoint.sh
 USER root
