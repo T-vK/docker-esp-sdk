@@ -38,7 +38,7 @@ USER esp
 
 WORKDIR /home/esp
 
-RUN git clone -b esp32 --recursive https://github.com/sermus/esp-open-sdk.git
+RUN git clone -b esp32 --recursive https://github.com/T-vK/esp-open-sdk.git
 
 RUN cd esp-open-sdk && make STANDALONE=n
 
