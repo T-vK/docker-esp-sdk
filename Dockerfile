@@ -38,32 +38,11 @@ USER esp
 
 WORKDIR /home/esp
 
-RUN git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
+RUN git clone -b esp32 --recursive https://github.com/sermus/esp-open-sdk.git
 
 RUN cd esp-open-sdk && make STANDALONE=n
 
-RUN cd esp-open-sdk \
-	#&& make VENDOR_SDK=0.9.2 \
-	#&& make VENDOR_SDK=0.9.3 \
-	#&& make VENDOR_SDK=0.9.4 \
-	#&& make VENDOR_SDK=0.9.5 \
-	#&& make VENDOR_SDK=0.9.6b1 \
-	#&& make VENDOR_SDK=1.0.0 \
-	#&& make VENDOR_SDK=1.0.1b1 \
-	#&& make VENDOR_SDK=1.0.1b2 \
-	#&& make VENDOR_SDK=1.0.1 \
-	#&& make VENDOR_SDK=1.1.0 \
-	#&& make VENDOR_SDK=1.1.1 \
-	#&& make VENDOR_SDK=1.1.2 \
-	#&& make VENDOR_SDK=1.2.0 \
-	#&& make VENDOR_SDK=1.3.0 \
-	&& make VENDOR_SDK=1.4.0 \
-	&& make VENDOR_SDK=1.5.0 \
-	&& make VENDOR_SDK=1.5.1 \
-	&& make VENDOR_SDK=1.5.2 \
-	&& make VENDOR_SDK=1.5.3 \
-	&& make VENDOR_SDK=2.0.0 \
-	&& make VENDOR_SDK=1.5.4
+RUN cd esp-open-sdk && make STANDALONE=y
 
 ENV PATH /home/esp/esp-open-sdk/xtensa-lx106-elf/bin:/home/esp/esp-open-sdk/esptool:$PATH
 ENV XTENSA_TOOLS_ROOT /home/esp/esp-open-sdk/xtensa-lx106-elf/bin
