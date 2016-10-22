@@ -1,4 +1,4 @@
-## Easily compile and flash binaries for the ESP8266 and ESP32
+## Easily compile and flash binaries for the ESP8266 and ESP8266EX
 
 ## How to install
 
