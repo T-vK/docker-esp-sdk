@@ -1,4 +1,5 @@
 ## Easily compile and flash binaries for the ESP32 and ESP31b
+You might also be interested in the branch for the ESP8266 and ESP8266EX: https://github.com/T-vK/docker-esp-sdk/
 
 ## !!! This branch is completely untested for now!
 
