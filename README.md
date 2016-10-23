@@ -81,5 +81,7 @@ make ESP_ROOT=/home/esp/esp-open-sdk burn
  - Replace `1.5.3` with whatever version of the ESP SDK you want to use for the compiling process.
  - Replace `make ESP_ROOT=/home/esp/esp-open-sdk burn` with the command necessary to compile and flash your project.
 
+### For more information on flashing please refer to the README of https://github.com/themadinventor/esptool
+
 ### Tested
 I personally tested the docker image under Ubuntu 16.04 x64 and Debian 8 Jessie x64.
