@@ -9,14 +9,14 @@ If you don't have docker, install docker first: https://docs.docker.com/engine/i
 ``` bash
 git clone https://github.com/T-vK/docker-esp-sdk.git
 cd docker-esp-sdk
-sudo docker build -t tavk/esp-sdk:0.1 .
+sudo docker build -t tavk/esp-sdk:0.1.0 .
 ```
 
 If you don't understand what that means do this:
 
  - Download the files of this repository and put them in a folder or use git to clone the repository.
  - Open a command line / terminal and navigate into the folder.
- - Paste this `sudo docker build -t tavk/esp-sdk:0.1 .` and press enter. (This takes a long time; around 20 minutes for me.)
+ - Paste this `sudo docker build -t tavk/esp-sdk:0.1.0 .` and press enter. (This takes a long time; around 20 minutes for me.)
 
 
 ## How to use
@@ -27,7 +27,7 @@ If you don't understand what that means do this:
 sudo docker run -t -i -u esp \
 -v /home/ubuntu/esp8266/esp-open-sdk/examples/blinky:/home/esp/shared_project \
 -e SDK_VERSION='1.5.3' \
-tavk/esp-sdk:0.1 \
+tavk/esp-sdk:0.1.0 \
 make
 ```
 
@@ -42,7 +42,7 @@ make
 sudo docker run -t -i -u esp \
 --device=/dev/ttyUSB0 \
 -v /home/ubuntu/esp8266/esp-open-sdk/examples/blinky:/home/esp/shared_project \
-tavk/esp-sdk:0.1 \
+tavk/esp-sdk:0.1.0 \
 esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 blinky-0x40000.bin
 ```
 
@@ -57,7 +57,7 @@ esptool.py --port /dev/ttyUSB0 write_flash 0x00000 blinky-0x00000.bin 0x40000 bl
 sudo docker run -t -i -u esp \
 --device=/dev/ttyUSB0 \
 -v /home/ubuntu/projects/esp-bootloader:/home/esp/shared_project \
-tavk/esp-sdk:0.1 \
+tavk/esp-sdk:0.1.0 \
 esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0 bootloader.bin
 ```
 
