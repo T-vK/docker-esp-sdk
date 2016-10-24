@@ -8,7 +8,7 @@ If you don't have docker, install docker first: https://docs.docker.com/engine/i
 ``` bash
 git clone -b esp32 https://github.com/T-vK/docker-esp-sdk.git
 cd docker-esp-sdk
-sudo docker build -t tavk/esp32-sdk:0.1 .
+sudo docker build -t tavk/esp32-sdk:0.1.0 .
 ```
 
 ## How to use examples
@@ -18,7 +18,7 @@ sudo docker build -t tavk/esp32-sdk:0.1 .
 ``` bash
 sudo docker run -t -i -u esp \
 -v /home/debian/esp-idf/examples/01_hello_world:/home/esp/shared_project \
-tavk/esp32-sdk:0.1 \
+tavk/esp32-sdk:0.1.0 \
 make all
 ```
 
@@ -31,8 +31,8 @@ make all
 ``` bash
 sudo docker run -t -i -u esp \
 --device=/dev/ttyUSB0 \
--v /home/ubuntu/esp8266/esp-open-sdk/examples/blinky:/home/esp/shared_project \
-tavk/esp32-sdk:0.1 \
+-v /home/debian/esp-idf/examples/01_hello_world:/home/esp/shared_project \
+tavk/esp32-sdk:0.1.0 \
 make flash
 ```
 
