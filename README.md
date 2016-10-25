@@ -1,21 +1,20 @@
 ## Easily compile and flash binaries for the ESP8266 and ESP8266EX
 You might also be interested in the branch for the ESP32: https://github.com/T-vK/docker-esp-sdk/tree/esp32
 
-
-## How to install
-
  1. [Get Docker](https://docs.docker.com/engine/installation/linux/)
- 2. If you trust me, you can simply pull my image from the docker hub:
-    ``` bash
-    sudo docker pull tavk/esp-sdk
-    ```
-    
-    Otherwise, if you want it to be built on your computer (takes about 30-90 minutes), run this: 
-    ``` bash
-    git clone https://github.com/T-vK/docker-esp-sdk.git
-    cd docker-esp-sdk
-    sudo docker build -t tavk/esp-sdk:0.1.0 .
-    ```
+ 2. 
+   - If you trust me, you can simply pull my image from the docker hub:
+     ``` bash
+     sudo docker pull tavk/esp-sdk
+     ```
+     
+   - Otherwise, if you want it to be built on your computer (takes about 30-90 minutes), run this: 
+     ``` bash
+     git clone https://github.com/T-vK/docker-esp-sdk.git
+     cd docker-esp-sdk
+     sudo docker build -t tavk/esp-sdk:0.1.0 .
+     ```
+     
 Done!
 
 ## How to use
