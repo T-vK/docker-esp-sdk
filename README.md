@@ -70,7 +70,7 @@ sudo docker run -t -i -u esp \
 --device=/dev/ttyUSB0 \
 -v /home/debian/espusb:/home/esp/shared_project \
 -e SDK_VERSION='1.5.3' \
-tavk/esp-sdk:0.1 \
+tavk/esp-sdk:0.1.0 \
 make ESP_ROOT=/home/esp/esp-open-sdk burn
 ```
 
