@@ -7,7 +7,7 @@ You might also be interested in the branch for the ESP8266 and ESP8266EX: https:
  2. 
    - If you trust me, you can simply pull my image from the docker hub:
      ``` bash
-     sudo docker pull tavk/esp32-sdk
+     sudo docker pull tavk/esp32-sdk:0.1.0
      ```
     
    - Otherwise, if you want it to be built on your computer (takes about 30-90 minutes), run this: 
