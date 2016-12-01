@@ -5,7 +5,7 @@ You might also be interested in the branch for the ESP32: https://github.com/T-v
  2. 
    - If you trust me, you can simply pull my image from the docker hub:
      ``` bash
-     sudo docker pull tavk/esp-sdk
+     sudo docker pull tavk/esp-sdk:0.1.0
      ```
      
    - Otherwise, if you want it to be built on your computer (takes about 30-90 minutes), run this: 
